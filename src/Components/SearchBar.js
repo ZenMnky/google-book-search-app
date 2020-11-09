@@ -4,7 +4,7 @@ class SearchBar extends Component {
 
     render(){
 
-        const {searchTerm, searchChanged, handleSearch} = this.props;
+        const {searchTerm, searchChanged, handleSearch, clearResults} = this.props;
 
         return(
             <div id="searchBar">
@@ -19,7 +19,11 @@ class SearchBar extends Component {
                 <input 
                     type="submit"
                     value="Search"
-                    onClick={e => handleSearch(e)}
+                    onClick={e => {
+                        handleSearch(e)
+                        searchChanged('');
+                        clearResults();
+                    }}
                 />    
             </div>
         )

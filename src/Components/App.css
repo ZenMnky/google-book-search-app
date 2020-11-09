@@ -17,3 +17,53 @@
   color: #61dafb;
 }
 
+
+/*----------  booklist  ----------*/
+
+
+.bookmark_item-content{
+  border-bottom: 1px solid grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.bookmark_item-content img {
+  padding: 10px;
+  align-self: flex-start;
+  margin-left: 10px;
+}
+
+@media all and (min-width: 800px){
+  .bookmark_item-content{
+    flex-direction: row;
+    justify-content: space-evenly;
+  }
+  .bookmark_item-content img {
+    margin-left: 10px;
+  }
+}
+
+
+/*----------  search bar  ----------*/
+#searchBar {
+  background-color: darkgrey;
+  padding: 5px 0 5px;
+}
+
+
+/*----------  filter bar  ----------*/
+#search_filterOptions {
+  background-color: lightgrey;
+  display: flex;
+  padding: 5px 0;
+  justify-content: center;
+}
+
+#search_filterOptions select {
+  margin: 0 10px;
+}
+
+
+
+

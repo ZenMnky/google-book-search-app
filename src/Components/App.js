@@ -44,25 +44,36 @@ class App extends Component {
       } else { this.setState({filter:true})}
   }
 
+  clearResults = () =>{
+    this.setState({searchResults: []})
+  }
+
+
   handleSearch = (e) => {
+    //prevent page from reloading
     e.preventDefault();
-    console.log('handle search fired');
+    
+
     const endPoint = 'https://www.googleapis.com/books/v1/volumes?q=';
     const authorization = `key=${api}`
     let titleSearchTerm = `intitle:${this.state.searchTerm}`
-    let searchQuery=`${endPoint}${titleSearchTerm}&${authorization}`
+    let searchQuery=`${endPoint}${titleSearchTerm}`
 
     // if there is a print filter
     // append it do the search query
-    if(this.filterPrintChanged){
-        //append
+    if(this.state.filterPrint && this.state.filterPrint != 'false' ){
+        //append the value
+      searchQuery += `&printType=${this.state.filterPrint}`;
     }
     
     // if there is a type filter
     // append it do the search query
-    if(this.filterTypeChanged){
-        //append
+    if(this.state.filterType && this.state.filterType != 'false'){
+      searchQuery += `&filter=${this.state.filterType}`;
     }
+
+    //append authorization token to end of query
+    searchQuery += `&${authorization}`;
 
 
 
@@ -70,12 +81,10 @@ class App extends Component {
         .then(response => response.json())
         .then(data => 
             {
-                this.setState({
-                    searchResults: data.items
-                })
-                console.log(this.state.searchResults)
+              this.setState({
+                  searchResults: data.items
+              })
         })
-
   }
 
   render(){
@@ -92,6 +101,7 @@ class App extends Component {
             handleFilterChange={this.handleFilterChange}
             handleSearch={this.handleSearch}
             searchTerm={this.state.searchTerm}
+            clearResults={this.clearResults}
           />
           <BookList 
             searchResults={this.state.searchResults}
