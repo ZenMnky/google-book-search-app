@@ -61,14 +61,14 @@ class App extends Component {
 
     // if there is a print filter
     // append it do the search query
-    if(this.state.filterPrint && this.state.filterPrint != 'false' ){
+    if(this.state.filterPrint && this.state.filterPrint !== 'false' ){
         //append the value
       searchQuery += `&printType=${this.state.filterPrint}`;
     }
     
     // if there is a type filter
     // append it do the search query
-    if(this.state.filterType && this.state.filterType != 'false'){
+    if(this.state.filterType && this.state.filterType !== 'false'){
       searchQuery += `&filter=${this.state.filterType}`;
     }
 
