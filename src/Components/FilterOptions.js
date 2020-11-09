@@ -21,7 +21,9 @@ class FilterOptions extends Component {
                         }}
                     >
                         <option value="false">All</option>
-                        <option value="god mode">GOD MODE</option>
+                        <option value="ebooks">E-Books</option>
+                        <option value="free-ebooks">Free E-Books</option>
+                        <option value="paid-ebooks">Paid E-Books</option>
                     </select>
                 </div>
                 <div id="search_filterOptions_bookType">
@@ -36,7 +38,8 @@ class FilterOptions extends Component {
                             }}
                     >
                         <option value="false">No Filter</option>
-                        <option value="god mode">GOD MODE</option>
+                        <option value="books">Books Only</option>
+                        <option value="magazines">Magazines Only</option>
                     </select>
                 </div>
                 

@@ -13,6 +13,7 @@ class Search extends Component{
                     searchTerm = {this.props.searchTerm}
                     searchChanged = {this.props.searchChanged}
                     handleSearch = {this.props.handleSearch}
+                    clearResults = {this.props.clearResults}
                 />
                 <FilterOptions 
                     filterPrintChanged = {this.props.filterPrintChanged}

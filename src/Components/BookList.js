@@ -5,53 +5,62 @@ class BookList extends Component {
 
     render(){
         let { searchResults } = this.props;
-        let searchArray = searchResults.map(bookObject => {
+        let searchArray = '';
+
+        if(searchResults){
+            searchArray = searchResults.map(bookObject => {
             
-            let title = bookObject.volumeInfo.title //string
-            let img = bookObject.volumeInfo.imageLinks.smallThumbnail //string
-            let description = bookObject.volumeInfo.description //string
-            let infoLink = bookObject.volumeInfo.infoLink;
-            let authorArray = bookObject.volumeInfo.authors;
-            let authorName = '';
-            let price = '';
-            
-            // //assigning author name
-            if(authorArray){
-                if(authorArray.length > 1){
-                    //if there is more than one author, join into a string
-                    authorName = authorArray.join();
+                let title = bookObject.volumeInfo.title //string
+                let img = bookObject.volumeInfo.imageLinks.smallThumbnail //string
+                let description = bookObject.volumeInfo.description //string
+                let infoLink = bookObject.volumeInfo.infoLink;
+                let authorArray = bookObject.volumeInfo.authors;
+                let authorName = '';
+                let price = '';
+                
+                // //assigning author name
+                if(authorArray){
+                    if(authorArray.length > 1){
+                        //if there is more than one author, join into a string
+                        authorName = authorArray.join();
+                    } else {
+                        //assign the value at the first index position
+                        authorName = authorArray[0];
+                    }
                 } else {
-                    //assign the value at the first index position
-                    authorName = authorArray[0];
+                    authorName = 'Unknown';
                 }
-            } else {
-                authorName = 'Unknown';
+                
+        
+                //checking if price exists, 
+                //otherwise check for 'free', otherwise 'unknown'
+                if(bookObject.saleInfo.retailPrice){
+                    price = bookObject.saleInfo.retailPrice.amount;
+                } else if (bookObject.saleInfo.saleability){
+                    price = bookObject.saleInfo.saleability
+                } else {
+                    price = ' Unknown';
+                }   
+                
+                return (
+                    <BookmarkItem 
+                        title={title}
+                        img={img}
+                        authorName={authorName}
+                        price={price}
+                        description={description}
+                        infoLink={infoLink}
+                        key={`${title}${authorName}`}
+                    />
+                    )
             }
             
-    
-            //checking if price exists, 
-            //otherwise check for 'free', otherwise 'unknown'
-            if(bookObject.saleInfo.retailPrice){
-                price = bookObject.saleInfo.retailPrice.amount;
-            } else if (bookObject.saleInfo.saleability){
-                price = bookObject.saleInfo.saleability
-            } else {
-                price = ' Unknown';
-            }
-
-
-            return (
-            <BookmarkItem 
-                title={title}
-                img={img}
-                authorName={authorName}
-                price={price}
-                description={description}
-                infoLink={infoLink}
-                key={`${title}${authorName}`}
-            />
-            )
-        })
+        
+        
+        )}
+        else {
+            searchArray = <h2>Sorry, no results found</h2>
+        }
         return(
             <section id="bookList">
                 <h2>Book List</h2>
