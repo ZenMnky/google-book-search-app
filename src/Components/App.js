@@ -2,7 +2,7 @@ import './App.css';
 import Search from './Search';
 import BookList from './BookList';
 import React, {Component} from 'react';
-import api from '../apiKey';
+// import api from '../apiKey';
 
 class App extends Component {
   constructor(props){
@@ -55,7 +55,7 @@ class App extends Component {
     
 
     const endPoint = 'https://www.googleapis.com/books/v1/volumes?q=';
-    const authorization = `key=${api}`
+    // const authorization = `key=${api}`
     let titleSearchTerm = `intitle:${this.state.searchTerm}`
     let searchQuery=`${endPoint}${titleSearchTerm}`
 
@@ -73,7 +73,7 @@ class App extends Component {
     }
 
     //append authorization token to end of query
-    searchQuery += `&${authorization}`;
+    // searchQuery += `&${authorization}`;
 
 
 
